@@ -1,0 +1,162 @@
+.products-page {
+  padding: 40px 0;
+  min-height: 80vh;
+}
+
+.products-page h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover {
+  background: #f0f0ff;
+}
+
+.filter-btn.active {
+  background: #667eea;
+  color: white;
+}
+
+.products-count {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.no-products {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .category-filter {
+    gap: 10px;
+  }
+  
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Анімація картки при завантаженні */
+.product-card {
+  animation: slideInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Плавний hover ефект */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Анімація зображення при hover */
+.product-image img {
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.1);
+}
+
+/* Анімація кнопки "В кошик" */
+.product-actions .btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-actions .btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.product-actions .btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Анімація ціни */
+.product-price {
+  animation: pulse 2s infinite;
+}
+
+.product-card:hover .product-price {
+  animation: none;
+  color: #1e7e34;
+}
+
+
+
+/* Loading стан */
+.loading-state {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+/* Помилка */
+.error-state {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.error-state h2 {
+  font-size: 28px;
+  color: #dc3545;
+  margin-bottom: 20px;
+}

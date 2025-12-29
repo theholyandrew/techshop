@@ -1,0 +1,96 @@
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: rgba(255,255,255,0.9);
+}
+
+.btn-large {
+  padding: 16px 40px;
+  font-size: 18px;
+}
+
+.featured-section {
+  padding: 60px 0;
+}
+
+.featured-section h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 32px;
+  }
+  
+  .hero-content p {
+    font-size: 16px;
+  }
+}
+
+
+
+/* Анімація Hero секції */
+.hero {
+  animation: fadeIn 1s ease-out;
+}
+
+.hero-content h1 {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.hero-content p {
+  animation: slideInLeft 1s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.hero-content .btn {
+  animation: slideInLeft 1.2s ease-out;
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+/* Градієнтна анімація фону */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Анімація секції товарів */
+.featured-section h2 {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Послідовна поява карток */
+.featured-section .product-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.featured-section .product-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.featured-section .product-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
