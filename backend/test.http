@@ -1,0 +1,54 @@
+### ТЕСТ 1: Переглянути всі товари
+GET http://localhost:5000/api/products
+
+###
+
+### ТЕСТ 2: Переглянути один товар (замініть ID на справжній з ТЕСТ 1)
+GET http://localhost:5000/api/products/69511bab04adb41051a1e604
+
+###
+
+### ТЕСТ 3: Додати новий товар
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Apple Watch Series 9",
+  "price": 15999,
+  "category": "Аксесуари",
+  "image": "https://via.placeholder.com/300x300?text=Apple+Watch",
+  "description": "Розумний годинник від Apple",
+  "inStock": true,
+  "rating": 4.7
+}
+
+
+### ТЕСТ 3.5: Додати новий товар
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Nintendo Switch",
+  "price": 12999,
+  "category": "Аксесуари",
+  "image": "https://via.placeholder.com/300x300?text=Switch",
+  "description": "Портативна ігрова консоль",
+  "inStock": true,
+  "rating": 4.8
+}
+
+
+###
+
+### ТЕСТ 4: Оновити ціну товару (замініть ID)
+PUT http://localhost:5000/api/products/694fe23e4eecd7d89fbdf4ff
+Content-Type: application/json
+
+{
+  "price": 30999
+}
+
+###
+
+### ТЕСТ 5: Видалити товар (замініть ID)
+DELETE http://localhost:5000/api/products/695139b4f40c162e8ca98814
