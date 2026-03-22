@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from 'react';  
-import { Link, useNavigate, useLocation } from 'react-router-dom';  
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import './Header.css';
 
 function Header() {
-  const { getTotalItems } = useCart();
-  const totalItems = getTotalItems();
-  
   const navigate = useNavigate();
-  const location = useLocation();  
+  const { getTotalItems } = useCart();
+  const { user, logout, isAuthenticated, isAdmin } = useAuth();
+  
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Синхронізуємо поле з URL параметром
-  useEffect(() => {
-    // Якщо ми на сторінці пошуку
-    if (location.pathname === '/search') {
-      // Отримуємо параметр q з URL
-      const params = new URLSearchParams(location.search);
-      const query = params.get('q');
-      if (query) {
-        setSearchQuery(query);  // Встановлюємо в поле
-      }
-    } else {
-      // Якщо не на сторінці пошуку - очищаємо поле
-      setSearchQuery('');
-    }
-  }, [location]);  // Виконується при зміні URL
-
-  // Обробник пошуку
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // Перенаправляємо на сторінку пошуку
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-      // НЕ очищаємо поле! Воно оновиться автоматично через useEffect
+      setSearchQuery('');
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -42,45 +29,60 @@ function Header() {
       <div className="container">
         <div className="header-content">
           
+          {/* Логотип */}
           <Link to="/" className="logo">
-            <h1>TechShop</h1>
+            TechShop
           </Link>
 
-          {/* Пошукове поле */}
+          {/* Пошук */}
           <form onSubmit={handleSearch} className="search-form">
-            <div className="search-input-wrapper">
-              <input
-                type="text"
-                placeholder="Пошук товарів..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="search-clear-btn"
-                  aria-label="Очистити"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-            <button type="submit" className="search-button">
+            <input
+              type="text"
+              placeholder="Пошук товарів..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            <button type="submit" className="search-btn">
               🔍
             </button>
           </form>
 
+          {/* Навігація */}
           <nav className="nav">
             <Link to="/" className="nav-link">Головна</Link>
             <Link to="/products" className="nav-link">Каталог</Link>
-            <Link to="/cart" className="nav-link cart-link">
+            
+            {/* Показати Admin Panel тільки для admin */}
+            {isAdmin() && (
+              <Link to="/admin" className="nav-link admin-link">
+                ⚙️ Адмін
+              </Link>
+            )}
+
+            {/* Кошик */}
+            <Link to="/cart" className="cart-link">
               🛒 Кошик
-              {totalItems > 0 && (
-                <span className="cart-badge">{totalItems}</span>
+              {getTotalItems() > 0 && (
+                <span className="cart-badge">{getTotalItems()}</span>
               )}
             </Link>
+
+            {/* Авторизація */}
+            {isAuthenticated() ? (
+            <div className="user-menu">
+              <Link to="/profile" className="user-name">
+                👤 {user?.name}
+               </Link>
+             <button onClick={handleLogout} className="btn btn-secondary btn-small">
+               Вийти
+              </button>
+             </div>
+            ) : (
+            <Link to="/login" className="btn btn-primary btn-small">
+               Увійти
+            </Link>
+          )}
           </nav>
 
         </div>

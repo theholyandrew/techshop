@@ -1,0 +1,121 @@
+.profile-page {
+  min-height: 80vh;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.profile-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.profile-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  font-size: 32px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+  font-size: 16px;
+}
+
+.value {
+  font-size: 18px;
+  color: #333;
+  word-break: break-word; 
+  overflow-wrap: break-word; 
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.badge.admin {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.badge.user {
+  background: #e0e7ff;
+  color: #667eea;
+}
+
+/* Адаптивність профілю */
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 30px 15px; 
+  }
+
+  .profile-container {
+    padding: 25px; 
+  }
+
+  .profile-container h1 {
+    font-size: 24px; 
+    margin-bottom: 25px; 
+
+  .info-row {
+    padding: 12px; 
+  }
+
+  .label {
+    font-size: 14px; 
+  }
+
+  .value {
+    font-size: 14px; 
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 20px; 
+  }
+
+  .profile-container h1 {
+    font-size: 20px;
+  }
+
+  .info-row {
+    flex-direction: column; /* ← ВЕРТИКАЛЬНО */
+    align-items: flex-start; /* ← ВЛІВО */
+    gap: 8px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+}
+}

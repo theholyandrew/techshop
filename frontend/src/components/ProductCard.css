@@ -91,3 +91,45 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+
+
+/* Адаптивність для карток товарів */
+
+/* Планшети */
+@media (max-width: 1024px) {
+  .product-card {
+    max-width: 250px;
+  }
+}
+
+/* Малі планшети */
+@media (max-width: 768px) {
+  .product-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .product-card-image {
+    height: 200px;
+  }
+}
+
+/* Мобільні */
+@media (max-width: 600px) {
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-card-title {
+    font-size: 16px;
+  }
+
+  .product-card-price {
+    font-size: 18px;
+  }
+
+  .product-card-rating {
+    font-size: 12px;
+  }
+}

@@ -1,48 +1,31 @@
 require('dotenv').config();
-const connectDB = require('./config/db');
-
-connectDB();
-
 const express = require('express');
 const cors = require('cors');
+const connectDB = require('./config/db');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-// ========================================
-// MIDDLEWARE
-// ========================================
 
+// Підключення до MongoDB
+connectDB();
+
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-// ========================================
-// ROUTES
-// ========================================
-
-// Головна сторінка
-app.get('/', (req, res) => {
-  res.json({ 
-    message: '🎉 Backend TechShop працює!',
-    version: '1.0.0',
-    endpoints: {
-      products: '/api/products'
-    }
-  });
-});
-
-
+// Routes
 const productsRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth');
+
 app.use('/api/products', productsRoutes);
+app.use('/api/auth', authRoutes);
 
-
-app.use((req, res) => {
-  res.status(404).json({ 
-    message: 'Маршрут не знайдено' 
-  });
+// Головний route
+app.get('/', (req, res) => {
+  res.json({ message: 'TechShop API працює!' });
 });
 
-
+// Запуск сервера
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Сервер запущено на http://localhost:${PORT}`);
-  console.log(`📦 API товарів: http://localhost:${PORT}/api/products`);
 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product'); 
+const { protect, admin } = require('../middleware/auth');  // ← ДОДАЛИ
 
 // ========================================
 // GET /api/products - Отримати всі товари з MongoDB
@@ -44,7 +45,7 @@ router.get('/:id', async (req, res) => {
 // ========================================
 // POST /api/products - Додати новий товар
 // ========================================
-router.post('/', async (req, res) => {
+router.post('/', protect, admin, async (req, res) => {
   try {
     const product = new Product(req.body);
     
@@ -62,7 +63,7 @@ router.post('/', async (req, res) => {
 // ========================================
 // PUT /api/products/:id - Оновити товар
 // ========================================
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, admin, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -91,7 +92,7 @@ router.put('/:id', async (req, res) => {
 // ========================================
 // DELETE /api/products/:id - Видалити товар
 // ========================================
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, admin, async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     

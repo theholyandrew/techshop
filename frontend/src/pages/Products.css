@@ -160,3 +160,36 @@
   color: #dc3545;
   margin-bottom: 20px;
 }
+
+/* Адаптивність каталогу */
+
+@media (max-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 4 → 3 */
+  }
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 3 → 2 */
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* 2 → 1 */
+  }
+
+  .products-page {
+    padding: 20px 10px;
+  }
+
+  .filters select {
+    width: 100%;
+  }
+}

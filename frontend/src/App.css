@@ -142,3 +142,25 @@ h1, h2, h3 {
   border-top-color: transparent;
   animation: spin 0.8s linear infinite;
 }
+
+
+/* Глобальна адаптивність */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px; 
+  }
+
+  h1 {
+    font-size: 24px !important; 
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 10px; 
+  }
+}

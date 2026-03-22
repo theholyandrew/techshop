@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';  
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import ProductCard from '../components/ProductCard';
 import { getAllProducts } from '../api/api';  
 import './Home.css';
 
 function Home() {
-  const [products, setProducts] = useState([]);       
-  const [loading, setLoading] = useState(true);       
+  const { isAuthenticated } = useAuth();
+  
+  // State для товарів
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Завантаження товарів
   useEffect(() => {
@@ -24,7 +28,7 @@ function Home() {
     fetchProducts();
   }, []);
 
-  
+  // Перші 3 товари для головної
   const featuredProducts = products.slice(0, 3);
 
   return (
@@ -36,9 +40,19 @@ function Home() {
           <div className="hero-content">
             <h1>Ласкаво просимо до TechShop!</h1>
             <p>Найкраща техніка за найкращими цінами</p>
-            <Link to="/products" className="btn btn-primary btn-large">
-              Переглянути каталог
-            </Link>
+  
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+              <Link to="/products" className="btn btn-primary btn-large">
+                Переглянути каталог
+              </Link>
+              
+              {/* Кнопка "Увійти" тільки для неавторизованих */}
+              {!isAuthenticated() && (
+                <Link to="/login" className="btn btn-secondary btn-large">
+                  🔐 Увійти
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </section>

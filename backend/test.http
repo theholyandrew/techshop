@@ -52,3 +52,64 @@ Content-Type: application/json
 
 ### ТЕСТ 5: Видалити товар (замініть ID)
 DELETE http://localhost:5000/api/products/695139b4f40c162e8ca98814
+
+
+
+// AUTH TESTS
+### ТЕСТ 1: Реєстрація користувача
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Андрій",
+  "email": "andrii@techshop.com",
+  "password": "password123"
+}
+
+
+### ТЕСТ 2: Реєстрація адміністратора
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Адмін",
+  "email": "admin@techshop.com",
+  "password": "admin123"
+}
+
+### ТЕСТ 3: Логін
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@techshop.com",
+  "password": "admin123"
+}
+
+### ТЕСТ 3: Логін
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@techshop.com",
+  "password": "admin123"
+}
+
+### ТЕСТ 4.1: Отримати профіль
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTljYzYzY2IyMjU5NGFkY2NhOGMxYmIiLCJpYXQiOjE3NzE4ODMzNTksImV4cCI6MTc3NDQ3NTM1OX0.jjxO8MXXdoaPD4wNWOVjcqV2A65mH84BAVmgY4LmgBE
+
+### ТЕСТ 5: Створити товар (ТІЛЬКИ ADMIN!)
+POST http://localhost:5000/api/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTljYzYzY2IyMjU5NGFkY2NhOGMxYmIiLCJpYXQiOjE3NzE4ODMzNTksImV4cCI6MTc3NDQ3NTM1OX0.jjxO8MXXdoaPD4wNWOVjcqV2A65mH84BAVmgY4LmgBE
+
+{
+  "name": "Xbox Series X",
+  "price": 18999,
+  "category": "Аксесуари",
+  "image": "https://via.placeholder.com/300x300?text=Xbox",
+  "description": "Ігрова консоль Microsoft",
+  "inStock": true,
+  "rating": 4.8
+}
