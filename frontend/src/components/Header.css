@@ -399,3 +399,20 @@
     font-size: 10px;
   }
 }
+
+/* Виправлення кольору посилань в Header */
+header nav a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+header nav a:visited {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+header nav a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}

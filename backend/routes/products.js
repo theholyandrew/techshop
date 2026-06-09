@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product'); 
-const { protect, admin } = require('../middleware/auth');  // ← ДОДАЛИ
+const { protect, admin } = require('../middleware/auth'); 
 
 // ========================================
 // GET /api/products - Отримати всі товари з MongoDB

@@ -10,7 +10,12 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: function(origin, callback) {
+    callback(null, true);
+  },
+  credentials: true
+}));
 
 // Routes
 const productsRoutes = require('./routes/products');

@@ -13,7 +13,6 @@ function ProductCard({ product }) {
     addToCart(product);
     setShowToast(true);
   };
-
   return (
     <>
       {showToast && (
@@ -63,5 +62,4 @@ function ProductCard({ product }) {
     </>
   );
 }
-
 export default ProductCard;
